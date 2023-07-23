@@ -4,6 +4,8 @@ This API was created for educational purposes and will be used as the API for th
 
 **Note:** I created this API to process the information obtained from the [TMDB API](https://www.themoviedb.org/) more easily.
 
+[SPANISH README](./README_ES.md)
+
 ## Scripts
 
 - `npm start`:  Starts the API on your [localhost](http:localhost:3000/).
