@@ -104,7 +104,6 @@ components:
   schemas:
     ArrayOfMovies:
       type: array
-      des
       items:
         $ref: '#components/shcemas/Movie'
     ArrayOfCast:
