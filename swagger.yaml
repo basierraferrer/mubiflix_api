@@ -1,0 +1,159 @@
+openapi: '3.0.0'
+info: 
+  title: 'Mubiflix API'
+  version: '1.0.0'
+  description: 'This API was created for educational purposes and will be used as the API for the Mubiflix application which is built in Flutter and React Native. The aim is to provide my opinion as a developer on the differences between Flutter and RN and lay down some foundations for other developers who may want to use these technologies in the future.'
+  contact: 
+    name: "Brian Sierra"
+    email: "basierraferrer@gmail.com"
+    url: 'https://github.com/basierraferrer'
+  
+  license: 
+    name: 'Licensed Under ISC'
+    url: 'https://spdx.org/licenses/ISC.html'
+    
+servers:      
+  - url: 'http://localhost:3000'
+    description: Internal staging server for devs
+
+paths:
+  /nowplaying/{offset}:
+    get:
+      summary: Get a list of movies that are currently in theatres.
+      description: Get a list of movies that are currently in theatres. Using offset to handle how many items wants to return. If offset is undefined or null return the original list.
+      parameters:
+      - name: offset
+        in: path
+        required: false
+        description: how many items wants to return.
+        shcema:
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: List of movies that are currently in theatres. 
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/ArrayOfMovies'
+              example: [{ "id": 575264,  "cast": [{"name": "Tom Cruise","character": "Ethan Hunt",    "pathImage": "/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg" }], "genres": "Action, Thriller, Adventure", "overview": "Ethan Hunt and his IMF team embark on their most dangerous mission yet: To track down a terrifying new weapon that threatens all of humanity before it falls into the wrong hands. With control of the future and the world's fate at stake and dark forces from Ethan's past closing in, a deadly race around the globe begins. Confronted by a mysterious, all-powerful enemy, Ethan must consider that nothing can matter more than his mission—not even the lives of those he cares about most.", "pathBackgroud": "/628Dep6AxEtDxjZoGP78TsOxYbK.jpg","posterPath": "/NNxYkU70HPurnNCSiCjYAmacwm.jpg","releaseYear": "2023","runtime": 164,"score": "7.82", "title": "Mission: Impossible - Dead Reckoning Part One"}]
+        404:
+          description: "Error trying to get a list of movies that are currently in theatres."
+  /toprated:
+    get:
+      summary: Get a list of movies ordered by rating.
+      description: Get a list of movies ordered by rating.
+      responses:
+        200:
+          description: List of movies ordered by rating
+          content: 
+            application/json:
+              schema:
+                $ref: '#components/schemas/ArrayOfMovies'
+              example: [{ "id": 575264,  "cast": [{"name": "Tom Cruise","character": "Ethan Hunt",    "pathImage": "/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg" }], "genres": "Action, Thriller, Adventure", "overview": "Ethan Hunt and his IMF team embark on their most dangerous mission yet: To track down a terrifying new weapon that threatens all of humanity before it falls into the wrong hands. With control of the future and the world's fate at stake and dark forces from Ethan's past closing in, a deadly race around the globe begins. Confronted by a mysterious, all-powerful enemy, Ethan must consider that nothing can matter more than his mission—not even the lives of those he cares about most.", "pathBackgroud": "/628Dep6AxEtDxjZoGP78TsOxYbK.jpg","posterPath": "/NNxYkU70HPurnNCSiCjYAmacwm.jpg","releaseYear": "2023","runtime": 164,"score": "7.82", "title": "Mission: Impossible - Dead Reckoning Part One"}]
+        404:
+          description: "Error trying to get a list of movies ordered by rating."        
+  /mostpopular:
+    get:
+      summary: Get a list of movies ordered by popularity.          
+      description: Get a list of movies ordered by popularity.
+      responses:
+        200:
+          description:  List of movies ordered by popularity.
+          content: 
+            application/json:
+              schema:
+                $ref: '#components/schemas/ArrayOfMovies'
+              example: [{ "id": 575264,  "cast": [{"name": "Tom Cruise","character": "Ethan Hunt",    "pathImage": "/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg" }], "genres": "Action, Thriller, Adventure", "overview": "Ethan Hunt and his IMF team embark on their most dangerous mission yet: To track down a terrifying new weapon that threatens all of humanity before it falls into the wrong hands. With control of the future and the world's fate at stake and dark forces from Ethan's past closing in, a deadly race around the globe begins. Confronted by a mysterious, all-powerful enemy, Ethan must consider that nothing can matter more than his mission—not even the lives of those he cares about most.", "pathBackgroud": "/628Dep6AxEtDxjZoGP78TsOxYbK.jpg","posterPath": "/NNxYkU70HPurnNCSiCjYAmacwm.jpg","releaseYear": "2023","runtime": 164,"score": "7.82", "title": "Mission: Impossible - Dead Reckoning Part One"}]
+        404:
+          description: "Error trying to get a list of movies ordered by popularity."        
+  /detail/{id}:
+    get: 
+      summary: Get the top level details of a movie by ID.
+      description: Get the top level details of a movie by ID.
+      parameters:
+        - name: 'id'
+          in: path
+          required: true
+          description: Movie id
+          shcema:
+            type: integer
+            format: int32
+            example: 575264
+      responses:
+        200:
+          description:  Details of a movie by ID.
+          content: 
+            application/json:
+              schema:
+                $ref: '#components/schemas/Movie'
+              example:
+                id: 575264
+                cast: [{name: 'Tom Cruise', character: "Ethan Hunt", pathImage: "/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg"}]
+                genres: 'Action, Thriller, Adventure'
+                overview: "Ethan Hunt and his IMF team embark on their most dangerous mission yet: To track down a terrifying new weapon that threatens all of humanity before it falls into the wrong hands. With control of the future and the world's fate at stake and dark forces from Ethan's past closing in, a deadly race around the globe begins. Confronted by a mysterious, all-powerful enemy, Ethan must consider that nothing can matter more than his mission—not even the lives of those he cares about most."
+                pathBackgroud:  '/628Dep6AxEtDxjZoGP78TsOxYbK.jpg'
+                posterPath: '/NNxYkU70HPurnNCSiCjYAmacwm.jpg'
+                releaseYear: '2023'
+                runtime: 164
+                score: '7.82'
+                title: 'Mission: Impossible - Dead Reckoning Part One'
+        404:
+          description: "Error trying to get details of a movie by ID."        
+components:
+  schemas:
+    ArrayOfMovies:
+      type: array
+      des
+      items:
+        $ref: '#components/shcemas/Movie'
+    ArrayOfCast:
+      type: array
+      items:
+        $ref: "#components/schemas/Cast" 
+    Movie:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 575264
+        cast:
+          $ref: '#components/schemas/ArrayOfCast'
+          example: [{name: 'Tom Cruise', character: "Ethan Hunt", pathImage: "/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg"}]
+        genres:
+          type: string
+          example: 'Action, Thriller, Adventure'
+        overview:
+          type: string
+          example: "Ethan Hunt and his IMF team embark on their most dangerous mission yet: To track down a terrifying new weapon that threatens all of humanity before it falls into the wrong hands. With control of the future and the world's fate at stake and dark forces from Ethan's past closing in, a deadly race around the globe begins. Confronted by a mysterious, all-powerful enemy, Ethan must consider that nothing can matter more than his mission—not even the lives of those he cares about most."
+        pathBackgroud:
+          type: string
+          example: '/628Dep6AxEtDxjZoGP78TsOxYbK.jpg'
+        posterPath:
+          type: string
+          example: '/NNxYkU70HPurnNCSiCjYAmacwm.jpg'
+        releaseYear:
+          type: string
+          example: '2023'
+        runtime:
+          type: integer
+          nullable: true
+          example: 164
+        score:
+          type: string
+          example: '7.82'
+        title:
+          type: string
+          example: 'Mission: Impossible - Dead Reckoning Part One'
+    Cast:
+      type: object
+      properties:
+        character:
+          type: string
+          example: 'Ethan Hunt'
+        name: 
+          type: string 
+          example: "Tom Cruise"
+        pathImage:
+          type: string
+          example: "/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg"
