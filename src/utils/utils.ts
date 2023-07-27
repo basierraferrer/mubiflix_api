@@ -1,15 +1,19 @@
+import dotenv from 'dotenv';
+import { Cast, Results } from "../../movie";
+dotenv.config();
 
-const URL = 'https://api.themoviedb.org/3/movie';
-const API_KEY = 'api_key=587b3204e675e78d187bfa8d6fc2dae4';
-
+const URL = process.env.TMDB_API_URL || 'apiurl';
+const API_KEY = process.env.TMDB_API_KEY || 'someApiKey';
+console.log('URL', URL);
+console.log('API_KEY', API_KEY);
 /**
  * @function buildURL
  * This function returns the URL that we need to execute to request data from the API at https://www.themoviedb.org/
  * @param path value of the path that complements the URL to be return
  * @returns URL to use in axios
  */
-function buildURL(path) {
-    return `${URL}/${path}?${API_KEY}`;
+function buildURL(path: any) {
+    return `${URL}/${path}?api_key=${API_KEY}`;
 }
 
 /**
@@ -18,7 +22,7 @@ function buildURL(path) {
  * @param resultData movie data obtained from the API at https://www.themoviedb.org/
  * @returns the movie data structure to be used in the Mubiflix app
  */
-function getMovieInfo(resultData) {
+function getMovieInfo(resultData: any) {
     const movies = {
         id: resultData.id,
         genres: getGenres(resultData.genres),
@@ -38,8 +42,8 @@ function getMovieInfo(resultData) {
  * @param results movie data obtained from the API at https://www.themoviedb.org/
  * @returns genres structure to be used as complement of movie info detail in the Mubiflix app
  */
-function getGenres(results) {
-    const genres = [];
+function getGenres(results: Results) {
+    const genres: string[] = [];
     if (!!results && results.length) {
         results.forEach(item => genres.push(item.name));
     }
@@ -71,10 +75,10 @@ function transformCharacter(character = '') {
  * @param results movie data obtained from the API at https://www.themoviedb.org/
  * @returns A list with the structure of the actors who participated in the movie
  */
-function getMovieCast(results) {
-    const cast = [];
+function getMovieCast(results: Results) {
+    const cast: Cast[] = [];
     if (!!results && results.length) {
-        results.forEach(item => ({
+        results.forEach((item: any) => ({
             character: transformCharacter(item.character),
             name: item.name,
             pathImage: item.profile_path ?? '',
@@ -90,7 +94,7 @@ function getMovieCast(results) {
  * @param results movie data obtained from the API at https://www.themoviedb.org/
  * @returns The movie detail structure defined by Mubiflix
  */
-function getMovieDetail(results) {
+function getMovieDetail(results: Results) {
     const movieDetail = {
         ...getMovieInfo(results[0].data),
         cast: getMovieCast(results[1].data.cast),
@@ -105,7 +109,7 @@ function getMovieDetail(results) {
  * @param results movie data obtained from the API at https://www.themoviedb.org/
  * @returns Array of The movie detail structure defined by Mubiflix
  */
-function getArrayMovieInfo(results) {
+function getArrayMovieInfo(results: Results) {
     if (results.length) {
         return results.map((item) => getMovieInfo(item));
     }
@@ -113,7 +117,7 @@ function getArrayMovieInfo(results) {
     return [];
 }
 
-module.exports = {
+export {
     buildURL,
     getArrayMovieInfo,
     getMovieDetail,

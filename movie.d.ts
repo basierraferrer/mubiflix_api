@@ -11,8 +11,10 @@ export interface Movie {
     title: string;
 }
 
-export interface Cast{
-    name:string;
+export interface Cast {
+    name: string;
     character: string;
-    pathImage:string;
+    pathImage: string;
 }
+
+export type Results = any[];
