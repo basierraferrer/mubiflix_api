@@ -48,3 +48,6 @@ Scheme to represents the information of a movie. It has the following properties
 - score: string
 - title: string
 
+### Env
+
+YOu need replace the values on file .env
