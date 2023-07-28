@@ -22,7 +22,7 @@ app.get('/', (_req, res) => {
   res.send('Mubiflix API');
 });
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', detailsRouter);
 app.use('/api/list', listRouter);
 
