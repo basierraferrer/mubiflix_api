@@ -50,4 +50,7 @@ Scheme to represents the information of a movie. It has the following properties
 
 ### Env
 
-YOu need replace the values on file .env
+If you want runt this project on your local, you need to create a dot env with these values
+
+TMDB_API_KEY= #YOu can get api key creating an account on https://www.themoviedb.org/
+TMDB_API_URL=https://api.themoviedb.org/3/movie
