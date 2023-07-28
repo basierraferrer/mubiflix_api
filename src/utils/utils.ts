@@ -30,6 +30,7 @@ function getMovieInfo(resultData: any) {
         pathBackgroud: resultData.backdrop_path,
         posterPath: resultData.poster_path,
         releaseYear: new Date(resultData.release_date).getFullYear().toString(),
+        runtime: resultData.runtime,
         score: resultData.vote_average,
         title: resultData.title,
     }
@@ -77,12 +78,15 @@ function transformCharacter(character = '') {
  */
 function getMovieCast(results: Results) {
     const cast: Cast[] = [];
+
     if (!!results && results.length) {
-        results.forEach((item: any) => ({
-            character: transformCharacter(item.character),
-            name: item.name,
-            pathImage: item.profile_path ?? '',
-        }));
+        results.forEach((item: any) => {
+            cast.push({
+                character: transformCharacter(item.character),
+                name: item.name,
+                pathImage: item.profile_path ?? '',
+            });
+        });
     }
 
     return cast;
