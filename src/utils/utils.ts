@@ -4,8 +4,7 @@ dotenv.config();
 
 const URL = process.env.TMDB_API_URL || 'apiurl';
 const API_KEY = process.env.TMDB_API_KEY || 'someApiKey';
-console.log('URL', URL);
-console.log('API_KEY', API_KEY);
+
 /**
  * @function buildURL
  * This function returns the URL that we need to execute to request data from the API at https://www.themoviedb.org/
