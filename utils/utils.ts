@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 import { Cast, Results } from "../types/movie";
 dotenv.config();
 
-const URL = process.env.TMDB_API_URL || 'apiurl';
-const API_KEY = process.env.TMDB_API_KEY || 'someApiKey';
+const URL = process.env.API_URL || 'apiurl';
+const API_KEY = process.env.API_KEY || 'someApiKey';
 
 /**
  * @function buildURL
