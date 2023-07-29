@@ -3,7 +3,7 @@
   "devCommand": "npm run dev",
   "framework": null,
   "installCommand": "npm install",
-  "outputDirectory": "build/api",
+  "outputDirectory": "api",
   "redirects": [
     {
       "source": "/(.*)",
