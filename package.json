@@ -8,7 +8,7 @@
     "lint": "ts-standard",
     "start": "node build/api/index.js",
     "clean:install": "rm -rf node_modules package-lock.json && npm install",
-    "tsc": "tsc",
+    "tsc": "tsc && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
