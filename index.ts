@@ -22,10 +22,6 @@ app.use(cors());
 const port = process.env.PORT || 3000;
 
 
-app.get('/', (_req, res) => {
-  res.redirect('/api/docs')
-});
-
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', detailsRouter);
 app.use('/api/list', listRouter);
