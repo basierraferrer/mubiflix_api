@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { Cast, Results } from "../../movie";
+import { Cast, Results } from "../types/movie";
 dotenv.config();
 
 const URL = process.env.TMDB_API_URL || 'apiurl';

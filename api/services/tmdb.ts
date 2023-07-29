@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { buildURL } from "../utils/utils"
 
 
@@ -7,15 +7,18 @@ export const getTopRated = async () => {
     const response = await axios.get(buildURL('now_playing'))
     return response.data.results;
   } catch (err) {
-    throw new Error('Error trying to get list top rated from TMDB');
+    const error = err as AxiosError;
+    throw error;
   }
 }
+
 export const getMostPopular = async () => {
   try {
     const response = await axios.get(buildURL('popular'))
     return response.data.results;
   } catch (err) {
-    throw new Error('Error trying to get list most popular from TMDB');
+    const error = err as AxiosError;
+    throw error;
   }
 }
 export const getDetails = async (movieId: number) => {
@@ -26,7 +29,8 @@ export const getDetails = async (movieId: number) => {
     ]);
     return response;
   } catch (err) {
-    throw new Error('Error trying to get detail of a movie from TMDB');
+    const error = err as AxiosError;
+    throw error;
   }
 }
 export const getNowPlaying = async () => {
@@ -34,6 +38,7 @@ export const getNowPlaying = async () => {
     const response = await axios.get(buildURL('now_playing'))
     return response.data.results;
   } catch (err) {
-    throw new Error('Error trying to get list now playing from TMDB');
+    const error = err as AxiosError;
+    throw error;
   }
 }

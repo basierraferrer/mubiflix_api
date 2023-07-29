@@ -5,7 +5,7 @@ import { getArrayMovieInfo } from '../utils/utils';
 
 const router = express.Router();
 
-router.get('/nowplaying/:offset', async (req, res) => {
+router.get('/nowplaying/:offset', async (req, res, next) => {
   try {
     const offset = parseInt(req.params.offset);
     const results = await getNowPlaying();
@@ -18,30 +18,32 @@ router.get('/nowplaying/:offset', async (req, res) => {
     }
 
     res.json(movies);
-  } catch (e) {
-    res.status(500).send('Error trying to get list top rated from TMDB');
+  } catch (error) {
+    next(error);
   }
 });
 
 
-router.get('/toprated', async (_req, res) => {
+router.get('/toprated', async (_req, res, next) => {
   try {
     const response = await getTopRated();
     const movies = getArrayMovieInfo(response);
     res.json(movies);
   } catch (error) {
-    res.status(500).send('Error trying to get list top rated from TMDB');
+    //res.status(500).send('Error trying to get list top rated from TMDB');
+    next(error);
   }
 });
 
 
-router.get('/mostpopular', async (_req, res) => {
+router.get('/mostpopular', async (_req, res, next) => {
   try {
     const response = await getMostPopular();
     const movies = getArrayMovieInfo(response);
     res.json(movies);
   } catch (error) {
-    res.status(500).send('Error trying to get list most popular from TMDB');
+    //res.status(500).send('Error trying to get list most popular from TMDB');
+    next(error)
   }
 });
 
