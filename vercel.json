@@ -1,8 +1,13 @@
 {
-  "rewirtes": [
+  "buildCommand": "npm run tsc",
+  "devCommand": "npm run dev",
+  "framework": null,
+  "installCommand": "npm install",
+  "outputDirectory": "build",
+  "redirects": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api"
+      "source": "/(.*)",
+      "destination": "/api/docs"
     }
   ]
 }
