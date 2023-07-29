@@ -19,12 +19,16 @@ const port = 3000;
 
 
 app.get('/', (_req, res) => {
-  res.send('Mubiflix API');
+  res.redirect('/docs')
 });
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', detailsRouter);
 app.use('/api/list', listRouter);
+
+app.get('*', (_req, res) => {
+  res.redirect('/docs');
+})
 
 // start server
 app.listen(port, () => {
