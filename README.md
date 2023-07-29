@@ -15,13 +15,15 @@ This API was created for educational purposes and will be used as the API for th
 
 ## Paths
 
-- `/nowplaying/{offset}`
+- `/docs`
+Get Mubiflix API swagger info.
+- `/api/list/nowplaying/{offset}`
 Get a list of movies that are currently in theatres. Using offset to handle how many items wants to return. If offset is undefined or null return the original list from [TMDB API](https://www.themoviedb.org/). 
-- `/toprated`
+- `/api/list/toprated`
 Get a list of movies ordered by rating.
-- `/mostpopular`
+- `/api/list/mostpopular`
 Get a list of movies ordered by popularity.
-- `/detail/{id}`
+- `/api/detail/{id}`
 Get the top level details of a movie by ID.
 
 ### Schemas
