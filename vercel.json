@@ -15,5 +15,11 @@
       "source": "/(.*)*",
       "destination": "/api"
     }
+  ],
+  "builds": [
+    {
+      "src": "/api/index.js",
+      "use": "@now/node"
+    }
   ]
 }
