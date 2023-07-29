@@ -3,11 +3,17 @@
   "devCommand": "npm run dev",
   "framework": null,
   "installCommand": "npm install",
-  "outputDirectory": "build",
+  "outputDirectory": "build/api",
   "redirects": [
     {
       "source": "/(.*)",
       "destination": "/api/docs"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)*",
+      "destination": "/api"
     }
   ]
 }

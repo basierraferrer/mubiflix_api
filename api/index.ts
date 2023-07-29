@@ -30,9 +30,6 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', detailsRouter);
 app.use('/api/list', listRouter);
 
-app.get('*', (_req, res) => {
-  res.redirect('/api/docs');
-})
 
 //middlewares error
 app.use(logErrors);
